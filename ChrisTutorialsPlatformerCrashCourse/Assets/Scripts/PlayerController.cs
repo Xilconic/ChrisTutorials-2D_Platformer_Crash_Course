@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ public class PlayerController : MonoBehaviour
     bool _isMoving = false;
     [SerializeField]
     bool _isRunning = false;
+    bool _isFacingRight = true;
 
     Vector2 _moveInput;
     Rigidbody2D _rb;
@@ -20,7 +22,7 @@ public class PlayerController : MonoBehaviour
     public float WalkSpeed = 5f;
     [Tooltip("Determines the run-speed of the player.")]
     public float RunSpeed = 8f;
-    
+
     public bool IsMoving
     {
         get => _isMoving;
@@ -63,6 +65,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool IsFacingRight
+    {
+        get => _isFacingRight;
+        set
+        {
+            if(_isFacingRight != value)
+            {
+                // Flip x-orientation:
+                transform.localScale *= new Vector2(-1, 1);
+            }
+            _isFacingRight = value;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -95,6 +110,20 @@ public class PlayerController : MonoBehaviour
         _moveInput = context.ReadValue<Vector2>();
 
         IsMoving = _moveInput != Vector2.zero;
+
+        SetFacingDirection(_moveInput);
+    }
+
+    private void SetFacingDirection(Vector2 moveInput)
+    {
+        if(moveInput.x > 0 && !IsFacingRight)
+        {
+            IsFacingRight = true;
+        }
+        else if(moveInput.x < 0 && IsFacingRight)
+        {
+            IsFacingRight = false;
+        }
     }
 
     public void OnRun(InputAction.CallbackContext context) 
