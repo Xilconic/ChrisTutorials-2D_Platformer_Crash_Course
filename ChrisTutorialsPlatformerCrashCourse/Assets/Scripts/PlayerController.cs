@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         Debug.Assert(WalkSpeed > 0f, "'walkSpeed' must be greater than 0!");
-        Debug.Assert(RunSpeed > 8f, "'RunSpeed' must be greater than 0!");
+        Debug.Assert(RunSpeed > 0f, "'RunSpeed' must be greater than 0!");
         Debug.Assert(WalkSpeed < RunSpeed, "'RunSpeed' must be greater than 'WalkSpeed'!");
 
         _rb = GetComponent<Rigidbody2D>();
