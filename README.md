@@ -43,3 +43,12 @@ Original source: [Kyrise's 16x16 RPG icon pack](https://kyrise.itch.io/kyrises-f
 
 ### Sound Effects
 [Leohpaz Free RPG esentials SFX Bundle](https://leohpaz.itch.io/rpg-essentials-sfx-free)
+
+## Packages
+### Cinemachine
+Uses version 2.9.7 of the `Cinemachine package` by Unity Technologies Inc.
+Documentation: https://docs.unity3d.com/Packages/com.unity.cinemachine@2.9/manual/index.html
+
+### Input System
+Uses version 1.7.0 of the `Input System` package by Unity Technologies Inc.
+Documentation: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7/manual/index.html
