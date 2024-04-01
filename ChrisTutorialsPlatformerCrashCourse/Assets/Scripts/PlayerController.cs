@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
 
     [Tooltip("Determines the walk-speed of the player.")]
     public float WalkSpeed = 5f;
+    [Tooltip("Determines the run-speed of the player.")]
+    public float RunSpeed = 8f;
     
     public bool IsMoving
     {
@@ -39,11 +41,36 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    float CurrentMoveSpeed
+    {
+        get
+        {
+            if(IsMoving)
+            {
+                if (IsRunning)
+                {
+                    return RunSpeed;
+                }
+                else
+                {
+                    return WalkSpeed;
+                }
+            }
+            else
+            {
+                return 0;
+            }
+        }
+    }
+
 
     // Start is called before the first frame update
     void Start()
     {
         Debug.Assert(WalkSpeed > 0f, "'walkSpeed' must be greater than 0!");
+        Debug.Assert(RunSpeed > 8f, "'RunSpeed' must be greater than 0!");
+        Debug.Assert(WalkSpeed < RunSpeed, "'RunSpeed' must be greater than 'WalkSpeed'!");
+
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
     }
@@ -58,7 +85,7 @@ public class PlayerController : MonoBehaviour
     {
         // Only control lateral movement from Player Input:
         _rb.velocity = new Vector2(
-            _moveInput.x * WalkSpeed, 
+            _moveInput.x * CurrentMoveSpeed, 
             _rb.velocity.y // Intentionally not influencing vertical movement of `rb`
         );
     }
