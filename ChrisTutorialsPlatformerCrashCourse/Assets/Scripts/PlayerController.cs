@@ -1,3 +1,4 @@
+using Assets.Scripts;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ public class PlayerController : MonoBehaviour
         private set
         {
             _isMoving = value;
-            _animator.SetBool("isMoving", value);
+            _animator.SetBool(AnimationStrings.IsMoving, value);
         }
     }
 
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         private set
         {
             _isRunning = value;
-            _animator.SetBool("isRunning", value);
+            _animator.SetBool(AnimationStrings.IsRunning, value);
         }
     }
 
