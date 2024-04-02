@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(TouchingDirections))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -18,11 +19,14 @@ public class PlayerController : MonoBehaviour
     Vector2 _moveInput;
     Rigidbody2D _rb;
     Animator _animator;
+    TouchingDirections _touchingDirections;
 
     [Tooltip("Determines the walk-speed of the player.")]
     public float WalkSpeed = 5f;
     [Tooltip("Determines the run-speed of the player.")]
     public float RunSpeed = 8f;
+    [Tooltip("Determines the strength of the jump.")]
+    public float JumpImpulse = 10f;
 
     public bool IsMoving
     {
@@ -89,6 +93,7 @@ public class PlayerController : MonoBehaviour
 
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _touchingDirections = GetComponent<TouchingDirections>();
     }
 
     // Update is called once per frame
@@ -138,6 +143,17 @@ public class PlayerController : MonoBehaviour
         else if(context.canceled)
         {
             IsRunning = false;
+        }
+    }
+
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        // TODO: Check if alive
+        if(context.started && 
+           _touchingDirections.IsGrounded)
+        {
+            _animator.SetTrigger(AnimationStrings.Jump);
+            _rb.velocity = new Vector2(_rb.velocity.x, JumpImpulse);
         }
     }
 }

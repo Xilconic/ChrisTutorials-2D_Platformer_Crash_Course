@@ -6,5 +6,6 @@
         internal const string IsRunning = "isRunning";
         internal const string IsGrounded = "isGrounded";
         internal const string YVelocity = "yVelocity";
+        internal const string Jump = "jump";
     }
 }

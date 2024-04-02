@@ -25,7 +25,7 @@ public class TouchingDirections : MonoBehaviour
     [Tooltip("??")]
     public float groundDistance = 0.05f;
     
-    public bool IsGround
+    public bool IsGrounded
     {
         get => _isGrounded;
         private set
@@ -45,6 +45,6 @@ public class TouchingDirections : MonoBehaviour
 
     void FixedUpdate()
     {
-        IsGround = _touchingCollider.Cast(Vector2.down, CastFilter, _groundHits, groundDistance) > 0;
+        IsGrounded = _touchingCollider.Cast(Vector2.down, CastFilter, _groundHits, groundDistance) > 0;
     }
 }
