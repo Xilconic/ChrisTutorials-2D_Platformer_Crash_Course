@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     public float RunSpeed = 8f;
     [Tooltip("Determines the strength of the jump.")]
     public float JumpImpulse = 10f;
+    [Tooltip("Determines the lateral move-speed of the player while in the air.")]
+    public float AirwalkSpeed = 3f;
 
     public bool IsMoving
     {
@@ -52,15 +54,24 @@ public class PlayerController : MonoBehaviour
     {
         get
         {
-            if(IsMoving && !_touchingDirections.IsOnWall)
+            
+            if (IsMoving && !_touchingDirections.IsOnWall)
             {
-                if (IsRunning)
+                if (_touchingDirections.IsGrounded)
                 {
-                    return RunSpeed;
+                    if (IsRunning)
+                    {
+                        return RunSpeed;
+                    }
+                    else
+                    {
+                        return WalkSpeed;
+                    }
                 }
                 else
                 {
-                    return WalkSpeed;
+                    // We're in the air:
+                    return AirwalkSpeed;
                 }
             }
             else
