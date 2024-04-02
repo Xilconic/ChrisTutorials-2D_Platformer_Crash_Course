@@ -70,6 +70,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
+                    // TODO: Keep initial lateral velocity on jump. When switching directions, then keep using AirwalkSpeed.
                     // We're in the air:
                     return AirwalkSpeed;
                 }
