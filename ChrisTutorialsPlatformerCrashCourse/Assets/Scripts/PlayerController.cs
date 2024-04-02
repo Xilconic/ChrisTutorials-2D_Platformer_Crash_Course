@@ -104,6 +104,8 @@ public class PlayerController : MonoBehaviour
             _moveInput.x * CurrentMoveSpeed, 
             _rb.velocity.y // Intentionally not influencing vertical movement of `rb`
         );
+
+        _animator.SetFloat(AnimationStrings.YVelocity, _rb.velocity.y);
     }
 
     public void OnMove(InputAction.CallbackContext context)
