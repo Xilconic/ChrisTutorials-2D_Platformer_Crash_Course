@@ -7,5 +7,7 @@
         internal const string IsGrounded = "isGrounded";
         internal const string YVelocity = "yVelocity";
         internal const string Jump = "jump";
+        internal const string IsOnWall = "isOnWall";
+        internal const string IsOnCeiling = "isOnCeiling";
     }
 }
