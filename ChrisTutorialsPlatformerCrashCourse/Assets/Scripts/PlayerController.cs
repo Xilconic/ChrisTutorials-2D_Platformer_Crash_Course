@@ -166,5 +166,10 @@ public class PlayerController : MonoBehaviour
             _animator.SetTrigger(AnimationStrings.Jump);
             _rb.velocity = new Vector2(_rb.velocity.x, JumpImpulse);
         }
+        // Allow for 'short hopping' on release:
+        if (context.canceled && _rb.velocity.y > 0f)
+        {
+            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
+        }
     }
 }
