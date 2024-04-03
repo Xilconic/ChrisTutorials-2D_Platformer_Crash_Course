@@ -131,6 +131,25 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &-3367483248711297839
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 756569719f3443c4788a88148a58fa41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FloatName: attackCooldown
+  UpdateOnStateEnter: 0
+  UpdateOnStateExit: 1
+  UpdateOnStateMachineEnter: 0
+  UpdateOnStateMachineExit: 0
+  ValueOnEnter: 0
+  ValueOnExist: 0.5
 --- !u!1109 &-2253509035519225215
 AnimatorTransition:
   m_ObjectHideFlags: 1
@@ -142,6 +161,9 @@ AnimatorTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: hasTarget
     m_EventTreshold: 0
+  - m_ConditionMode: 4
+    m_ConditionEvent: attackCooldown
+    m_EventTreshold: 0.00001
   m_DstStateMachine: {fileID: 826647916946432230}
   m_DstState: {fileID: 0}
   m_Solo: 0
@@ -205,6 +227,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
+  - m_Name: attackCooldown
+    m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -253,6 +281,7 @@ AnimatorStateMachine:
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours:
   - {fileID: 6669398646611773918}
+  - {fileID: -3367483248711297839}
   m_AnyStatePosition: {x: 60, y: -20, z: 0}
   m_EntryPosition: {x: 50, y: 120, z: 0}
   m_ExitPosition: {x: 800, y: 120, z: 0}

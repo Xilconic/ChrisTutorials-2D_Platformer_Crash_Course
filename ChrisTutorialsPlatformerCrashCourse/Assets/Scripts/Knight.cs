@@ -62,6 +62,12 @@ public class Knight : MonoBehaviour
 
     public bool CanMove => _animator.GetBool(AnimationStrings.CanMove);
 
+    public float AttackCooldown
+    { 
+        get => _animator.GetFloat(AnimationStrings.AttackCooldown); 
+        private set => _animator.SetFloat(AnimationStrings.AttackCooldown, Mathf.Max(value, 0));
+    }
+
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -75,6 +81,10 @@ public class Knight : MonoBehaviour
     {
         // TODO: Code smell 'Law of Demeter violation': Given this usecase, AttackZone probably should expose a 'HasTarget' property instead.
         HasTarget = AttackZone.DetectedColliders.Count > 0;
+        if(AttackCooldown > 0)
+        {
+            AttackCooldown -= Time.deltaTime;
+        }
     }
 
     private void FixedUpdate()

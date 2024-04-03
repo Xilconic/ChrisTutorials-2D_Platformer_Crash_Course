@@ -15,5 +15,6 @@
         internal const string IsAlive = "isAlive";
         internal const string HitTrigger = "hit";
         internal const string LockVelocity = "lockVelocity";
+        internal const string AttackCooldown = "attackCooldown";
     }
 }
