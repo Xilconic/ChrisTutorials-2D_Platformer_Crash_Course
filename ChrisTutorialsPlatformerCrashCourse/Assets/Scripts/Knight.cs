@@ -12,8 +12,12 @@ public class Knight : MonoBehaviour
 {
     [Tooltip("Determines the walkspeed of the knight")]
     public float WalkSpeed = 3f;
+
     [Tooltip("The script managing the detection for triggering attacks")]
     public DetectionZone AttackZone;
+    [Tooltip("The script managing the detection of cliffs")]
+    public DetectionZone CliffDetectionZone;
+
     [Tooltip("Determines the rate at which the knight slows down it's lateral movement on attack")]
     public float WalkStopRate = 0.05f;
 
@@ -109,7 +113,8 @@ public class Knight : MonoBehaviour
 
     private void FlipDirection()
     {
-        if(WalkDirection == WalkableDirection.Right)
+        // TODO: Should not flip directions anymore when dead
+        if (WalkDirection == WalkableDirection.Right)
         {
             WalkDirection = WalkableDirection.Left;
         }
@@ -126,5 +131,13 @@ public class Knight : MonoBehaviour
     public void OnHit(int damage, Vector2 knockback)
     {
         _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
+    }
+
+    public void OnCliffDetected()
+    {
+        if(_touchingDirections.IsGrounded)
+        {
+            FlipDirection();
+        }
     }
 }
