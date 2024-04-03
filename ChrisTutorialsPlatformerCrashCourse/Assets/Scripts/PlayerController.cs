@@ -8,6 +8,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Animator))]
 [RequireComponent(typeof(TouchingDirections))]
+[RequireComponent(typeof(Damagable))]
 public class PlayerController : MonoBehaviour
 {
     [SerializeField]
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
     Rigidbody2D _rb;
     Animator _animator;
     TouchingDirections _touchingDirections;
+    Damagable _damagable;
 
     [Tooltip("Determines the walk-speed of the player.")]
     public float WalkSpeed = 5f;
@@ -107,11 +109,6 @@ public class PlayerController : MonoBehaviour
     }
 
     bool IsAlive => _animator.GetBool(AnimationStrings.IsAlive);
-    bool LockVelocity
-    {
-        get => _animator.GetBool(AnimationStrings.LockVelocity);
-        set => _animator.SetBool(AnimationStrings.LockVelocity, value);
-    }
 
     void Awake()
     {
@@ -122,6 +119,7 @@ public class PlayerController : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _touchingDirections = GetComponent<TouchingDirections>();
+        _damagable = GetComponent<Damagable>();
     }
 
     // Update is called once per frame
@@ -132,7 +130,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(!LockVelocity)
+        if(!_damagable.LockVelocity)
         {
             // Only control lateral movement from Player Input:
             _rb.velocity = new Vector2(
@@ -216,7 +214,6 @@ public class PlayerController : MonoBehaviour
 
     public void OnHit(int damage, Vector2 knockback)
     {
-        LockVelocity = true;
         _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
     }
 }

@@ -7,6 +7,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(TouchingDirections))]
 [RequireComponent(typeof(Animator))]
+[RequireComponent(typeof(Damagable))]
 public class Knight : MonoBehaviour
 {
     [Tooltip("Determines the walkspeed of the knight")]
@@ -19,6 +20,7 @@ public class Knight : MonoBehaviour
     Rigidbody2D _rb;
     TouchingDirections _touchingDirections;
     Animator _animator;
+    Damagable _damageable;
 
     public enum WalkableDirection { Right, Left };
 
@@ -65,6 +67,7 @@ public class Knight : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _touchingDirections = GetComponent<TouchingDirections>();
         _animator = GetComponent<Animator>();
+        _damageable = GetComponent<Damagable>();
     }
 
     // Update is called once per frame
@@ -80,13 +83,17 @@ public class Knight : MonoBehaviour
         {
             FlipDirection();
         }
-        if(CanMove)
+
+        if(!_damageable.LockVelocity) 
         {
-            _rb.velocity = new Vector2(WalkSpeed * _walkDirectionVector.x, _rb.velocity.y);
-        }
-        else
-        {
-            _rb.velocity = new Vector2(Mathf.Lerp(_rb.velocity.x, 0, WalkStopRate), _rb.velocity.y);
+            if (CanMove)
+            {
+                _rb.velocity = new Vector2(WalkSpeed * _walkDirectionVector.x, _rb.velocity.y);
+            }
+            else
+            {
+                _rb.velocity = new Vector2(Mathf.Lerp(_rb.velocity.x, 0, WalkStopRate), _rb.velocity.y);
+            }
         }
     }
 
@@ -104,5 +111,10 @@ public class Knight : MonoBehaviour
         {
             Debug.LogError("'WalkDirection' not set to legal values of Left or Right");
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
     }
 }

@@ -66,6 +66,16 @@ public class Damagable : MonoBehaviour
         get => _isInvincible;
     }
 
+    /// <summary>
+    /// Indicates that components should disallow movement input.
+    /// External effects, such as knockback, can still happen.
+    /// </summary>
+    public bool LockVelocity
+    {
+        get => _animator.GetBool(AnimationStrings.LockVelocity);
+        set => _animator.SetBool(AnimationStrings.LockVelocity, value);
+    }
+
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -94,6 +104,7 @@ public class Damagable : MonoBehaviour
             _isInvincible = true;
 
             _animator.SetTrigger(AnimationStrings.HitTrigger);
+            LockVelocity = true;
             DamageableHit?.Invoke(damage, knockBack);
 
             return true;

@@ -10,7 +10,7 @@ public class Attack : MonoBehaviour
     [Tooltip("The amount of damage this attack does")]
     public int AttackDamage = 10;
 
-    [Tooltip("The knockback of the attack. By default no knockback.")]
+    [Tooltip("The knockback of the attack. By default no knockback. Positive value knock away, negative values pull in.")]
     public Vector2 KnockBack = Vector2.zero;
 
     private void Awake()
@@ -23,7 +23,10 @@ public class Attack : MonoBehaviour
         var damagable = collision.GetComponent<Damagable>();
         if(damagable != null)
         {
-            bool gotHit = damagable.Hit(AttackDamage, KnockBack);
+            var deliveredKnockback = transform.parent.localScale.x > 0 ?
+                KnockBack :
+                new Vector2(-KnockBack.x, KnockBack.y);
+            bool gotHit = damagable.Hit(AttackDamage, deliveredKnockback);
             if(gotHit)
             {
                 Debug.Log($"{collision.name} hit for {AttackDamage}");
