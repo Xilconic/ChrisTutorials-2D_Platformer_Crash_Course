@@ -190,6 +190,7 @@ public class PlayerController : MonoBehaviour
     {
         // TODO: Is attack is pressed in mid air, the hero character will attack the moment he hits the ground.
         // This feels akward.
+        // TODO: The Knight enemy keeps some of his forward momentum while attacking. The player does not. Perhaps we should make that consistent?
         if (context.started)
         {
             _animator.SetTrigger(AnimationStrings.AttackTrigger);

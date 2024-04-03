@@ -11,5 +11,6 @@
         internal const string IsOnCeiling = "isOnCeiling";
         internal const string AttackTrigger = "attack";
         internal const string CanMove = "canMove";
+        internal const string HasTarget = "hasTarget";
     }
 }
