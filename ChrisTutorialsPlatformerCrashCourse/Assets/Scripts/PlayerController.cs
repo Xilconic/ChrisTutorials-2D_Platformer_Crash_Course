@@ -107,6 +107,11 @@ public class PlayerController : MonoBehaviour
     }
 
     bool IsAlive => _animator.GetBool(AnimationStrings.IsAlive);
+    bool LockVelocity
+    {
+        get => _animator.GetBool(AnimationStrings.LockVelocity);
+        set => _animator.SetBool(AnimationStrings.LockVelocity, value);
+    }
 
     void Awake()
     {
@@ -127,12 +132,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        // Only control lateral movement from Player Input:
-        _rb.velocity = new Vector2(
-            _moveInput.x * CurrentMoveSpeed, 
-            _rb.velocity.y // Intentionally not influencing vertical movement of `rb`
-        );
-
+        if(!LockVelocity)
+        {
+            // Only control lateral movement from Player Input:
+            _rb.velocity = new Vector2(
+                _moveInput.x * CurrentMoveSpeed,
+                _rb.velocity.y // Intentionally not influencing vertical movement of `rb`
+            );
+        }
+        
         _animator.SetFloat(AnimationStrings.YVelocity, _rb.velocity.y);
     }
 
@@ -204,5 +212,11 @@ public class PlayerController : MonoBehaviour
         {
             _animator.SetTrigger(AnimationStrings.AttackTrigger);
         }
+    }
+
+    public void OnHit(int damage, Vector2 knockback)
+    {
+        LockVelocity = true;
+        _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
     }
 }

@@ -10,6 +10,9 @@ public class Attack : MonoBehaviour
     [Tooltip("The amount of damage this attack does")]
     public int AttackDamage = 10;
 
+    [Tooltip("The knockback of the attack. By default no knockback.")]
+    public Vector2 KnockBack = Vector2.zero;
+
     private void Awake()
     {
         _attackCollider = GetComponent<Collider2D>();
@@ -20,7 +23,7 @@ public class Attack : MonoBehaviour
         var damagable = collision.GetComponent<Damagable>();
         if(damagable != null)
         {
-            bool gotHit = damagable.Hit(AttackDamage);
+            bool gotHit = damagable.Hit(AttackDamage, KnockBack);
             if(gotHit)
             {
                 Debug.Log($"{collision.name} hit for {AttackDamage}");

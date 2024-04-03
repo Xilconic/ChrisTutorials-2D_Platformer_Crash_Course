@@ -2,6 +2,7 @@ using Assets.Scripts;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(Animator))]
 public class Damagable : MonoBehaviour
@@ -10,8 +11,14 @@ public class Damagable : MonoBehaviour
 
     private float _timeSinceHit = 0;
 
+    // TODO: Can be hit multiple times by a single attack, even when InvicibilityTimer is longer than the hit-box of the enamy attack.
+    // Perhaps attacks to keep track of the attacked thing to avoid multi-hitting with a single attack?
+    // Perhaps there is a problem with the animator where state-transitions allow multi-htting?
     [Tooltip("Determines how long, in seconds, this component cannot take any damage after taken a hit.")]
     public float InvincibilityTime = 0.25f; // In Seconds
+
+    [Tooltip("Signals a damable hit has happened. First argument is the amount of damage; Second argument the knockback.")]
+    public UnityEvent<int, Vector2> DamageableHit;
 
     [SerializeField]
     int _maxHealth = 100;
@@ -79,12 +86,16 @@ public class Damagable : MonoBehaviour
     }
 
     /// <returns>True when damage was registered; False otherwise.</returns>
-    public bool Hit(int damage)
+    public bool Hit(int damage, Vector2 knockBack)
     {
         if(IsAlive && !IsInvincible)
         {
             Health -= damage;
             _isInvincible = true;
+
+            _animator.SetTrigger(AnimationStrings.HitTrigger);
+            DamageableHit?.Invoke(damage, knockBack);
+
             return true;
         }
 

@@ -13,5 +13,7 @@
         internal const string CanMove = "canMove";
         internal const string HasTarget = "hasTarget";
         internal const string IsAlive = "isAlive";
+        internal const string HitTrigger = "hit";
+        internal const string LockVelocity = "lockVelocity";
     }
 }

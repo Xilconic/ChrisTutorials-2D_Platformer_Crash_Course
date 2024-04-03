@@ -374,3 +374,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb8f8edc0fffc9c4a8da195efcc79711, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InvincibilityTime: 0.4
+  DamageableHit:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4606348892272059951}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnHit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  _maxHealth: 100
+  _health: 100
+  _isAlive: 1
+  _isInvincible: 0

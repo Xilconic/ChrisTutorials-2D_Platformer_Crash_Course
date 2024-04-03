@@ -36,7 +36,7 @@ public class SetBooleanBehavior : StateMachineBehaviour
     {
         if(UpdateOnState) 
         {
-            animator.SetBool(BoolName, ValueOnEnter);
+            animator.SetBool(BoolName, ValueOnExit);
         }
     }
 
