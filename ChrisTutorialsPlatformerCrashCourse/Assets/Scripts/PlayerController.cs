@@ -106,8 +106,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         Debug.Assert(WalkSpeed > 0f, "'walkSpeed' must be greater than 0!");
         Debug.Assert(RunSpeed > 0f, "'RunSpeed' must be greater than 0!");

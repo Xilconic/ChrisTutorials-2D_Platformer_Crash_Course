@@ -12,7 +12,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class TouchingDirections : MonoBehaviour
 {
-    Rigidbody2D _rb;
+    Rigidbody2D _rb; // TODO: Do we need this? Or can it be deleted?
     CapsuleCollider2D _touchingCollider;
     RaycastHit2D[] _groundHits = new RaycastHit2D[5];
     RaycastHit2D[] _wallHits = new RaycastHit2D[5];
@@ -67,8 +67,7 @@ public class TouchingDirections : MonoBehaviour
 
     Vector2 WallCheckDirection => gameObject.transform.localScale.x > 0 ? Vector2.right : Vector2.left;
 
-    // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _touchingCollider = GetComponent<CapsuleCollider2D>();
