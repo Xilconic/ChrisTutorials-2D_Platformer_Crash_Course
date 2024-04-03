@@ -12,5 +12,6 @@
         internal const string AttackTrigger = "attack";
         internal const string CanMove = "canMove";
         internal const string HasTarget = "hasTarget";
+        internal const string IsAlive = "isAlive";
     }
 }

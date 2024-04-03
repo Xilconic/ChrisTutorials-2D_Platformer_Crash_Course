@@ -106,6 +106,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool IsAlive => _animator.GetBool(AnimationStrings.IsAlive);
+
     void Awake()
     {
         Debug.Assert(WalkSpeed > 0f, "'walkSpeed' must be greater than 0!");
@@ -138,9 +140,16 @@ public class PlayerController : MonoBehaviour
     {
         _moveInput = context.ReadValue<Vector2>();
 
-        IsMoving = _moveInput != Vector2.zero;
+        if (IsAlive)
+        {
+            IsMoving = _moveInput != Vector2.zero;
 
-        SetFacingDirection(_moveInput);
+            SetFacingDirection(_moveInput);
+        }
+        else
+        {
+            IsMoving = false;
+        }
     }
 
     private void SetFacingDirection(Vector2 moveInput)
