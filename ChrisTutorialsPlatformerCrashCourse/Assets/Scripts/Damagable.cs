@@ -78,12 +78,16 @@ public class Damagable : MonoBehaviour
         }
     }
 
-    public void Hit(int damage)
+    /// <returns>True when damage was registered; False otherwise.</returns>
+    public bool Hit(int damage)
     {
         if(IsAlive && !IsInvincible)
         {
             Health -= damage;
             _isInvincible = true;
+            return true;
         }
+
+        return false;
     }
 }

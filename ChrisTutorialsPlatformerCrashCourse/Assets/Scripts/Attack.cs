@@ -20,8 +20,11 @@ public class Attack : MonoBehaviour
         var damagable = collision.GetComponent<Damagable>();
         if(damagable != null)
         {
-            damagable.Hit(AttackDamage);
-            Debug.Log($"{collision.name} hit for {AttackDamage}");
+            bool gotHit = damagable.Hit(AttackDamage);
+            if(gotHit)
+            {
+                Debug.Log($"{collision.name} hit for {AttackDamage}");
+            }
         }
     }
 }
