@@ -133,6 +133,8 @@ MonoBehaviour:
   _isRunning: 0
   WalkSpeed: 5
   RunSpeed: 8
+  JumpImpulse: 10
+  AirwalkSpeed: 2
 --- !u!114 &4581161781774362385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +181,19 @@ MonoBehaviour:
     m_ActionId: f1eabfb7-2c8e-4071-a9a8-2b5c87a8ebf7
     m_ActionName: Player/Look[/Mouse/delta]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4606348892272059951}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: aa12191d-7955-4acb-8d0c-6525f8cf424c
     m_ActionName: Player/Attack[/Mouse/leftButton]
   - m_PersistentCalls:
@@ -238,6 +252,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: eb38f1a4-ffc9-4f28-b5a3-4ae3e08a73fa
     m_ActionName: Player/Run[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4606348892272059951}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 6d5de888-0fe7-4bf6-abaf-1861b07698d7
+    m_ActionName: Player/Jump[/Keyboard/space]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -276,7 +306,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ae1893297c67700439a5a21c688c0fc3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _isGrounded: 0
   CastFilter:
     useTriggers: 0
     useLayerMask: 0
@@ -291,7 +320,12 @@ MonoBehaviour:
     maxDepth: 0
     minNormalAngle: 0
     maxNormalAngle: 0
-  groundDistance: 0.05
+  GroundDistance: 0.05
+  WallDistance: 0.2
+  CeilingDistance: 0.05
+  _isGrounded: 0
+  _isOnWall: 0
+  _isOnCeiling: 0
 --- !u!70 &1970951485671898565
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

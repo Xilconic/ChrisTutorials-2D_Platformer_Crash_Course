@@ -50,33 +50,43 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool CanMove => _animator.GetBool(AnimationStrings.CanMove);
+
     float CurrentMoveSpeed
     {
         get
         {
-            
-            if (IsMoving && !_touchingDirections.IsOnWall)
+            if (CanMove)
             {
-                if (_touchingDirections.IsGrounded)
+                if (IsMoving && !_touchingDirections.IsOnWall)
                 {
-                    if (IsRunning)
+                    if (_touchingDirections.IsGrounded)
                     {
-                        return RunSpeed;
+                        if (IsRunning)
+                        {
+                            return RunSpeed;
+                        }
+                        else
+                        {
+                            return WalkSpeed;
+                        }
                     }
                     else
                     {
-                        return WalkSpeed;
+                        // TODO: Keep initial lateral velocity on jump. When switching directions, then keep using AirwalkSpeed.
+                        // We're in the air:
+                        return AirwalkSpeed;
                     }
                 }
                 else
                 {
-                    // TODO: Keep initial lateral velocity on jump. When switching directions, then keep using AirwalkSpeed.
-                    // We're in the air:
-                    return AirwalkSpeed;
+                    // idle speed:
+                    return 0;
                 }
             }
             else
             {
+                // Player is not allowed to move:
                 return 0;
             }
         }
@@ -161,16 +171,29 @@ public class PlayerController : MonoBehaviour
     public void OnJump(InputAction.CallbackContext context)
     {
         // TODO: Check if alive
-        if(context.started && 
-           _touchingDirections.IsGrounded)
+        if (CanMove)
         {
-            _animator.SetTrigger(AnimationStrings.Jump);
-            _rb.velocity = new Vector2(_rb.velocity.x, JumpImpulse);
+            if (context.started &&
+                _touchingDirections.IsGrounded)
+            {
+                _animator.SetTrigger(AnimationStrings.JumpTrigger);
+                _rb.velocity = new Vector2(_rb.velocity.x, JumpImpulse);
+            }
+            // Allow for 'short hopping' on release:
+            if (context.canceled && _rb.velocity.y > 0f)
+            {
+                _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
+            }
         }
-        // Allow for 'short hopping' on release:
-        if (context.canceled && _rb.velocity.y > 0f)
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        // TODO: Is attack is pressed in mid air, the hero character will attack the moment he hits the ground.
+        // This feels akward.
+        if (context.started)
         {
-            _rb.velocity = new Vector2(_rb.velocity.x, _rb.velocity.y * 0.5f);
+            _animator.SetTrigger(AnimationStrings.AttackTrigger);
         }
     }
 }
