@@ -53,6 +53,10 @@ Documentation: https://docs.unity3d.com/Packages/com.unity.cinemachine@2.9/manua
 Uses version 1.7.0 of the `Input System` package by Unity Technologies Inc.
 Documentation: https://docs.unity3d.com/Packages/com.unity.inputsystem@1.7/manual/index.html
 
+### TextMesh Pro
+Uses version 3.0.6 of the `TextMesh Pro` package by Unity Technologies Inc.
+Documentation: https://docs.unity3d.com/Packages/com.unity.textmeshpro@3.0/manual/index.html
+
 ## Building and Running locally
 
 ### Requirements
