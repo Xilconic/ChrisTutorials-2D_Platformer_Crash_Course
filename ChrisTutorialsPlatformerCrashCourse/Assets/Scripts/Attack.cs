@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Collider2D))]
 public class Attack : MonoBehaviour
 {
-    Collider2D _attackCollider;
+    Collider2D _attackCollider; // TODO: Do we need this attack collider? It's not being used; but perhaps make sense to require it due to collision detection logic.
 
     [Tooltip("The amount of damage this attack does")]
     public int AttackDamage = 10;
@@ -20,8 +20,7 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var damagable = collision.GetComponent<Damagable>();
-        if(damagable != null)
+        if(collision.TryGetComponent<Damagable>(out var damagable))
         {
             var deliveredKnockback = transform.parent.localScale.x > 0 ?
                 KnockBack :

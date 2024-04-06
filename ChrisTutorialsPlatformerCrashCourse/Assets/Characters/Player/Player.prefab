@@ -120,6 +120,7 @@ GameObject:
   - component: {fileID: 7353005346457203793}
   - component: {fileID: 1970951485671898565}
   - component: {fileID: 1071445091843860147}
+  - component: {fileID: 4201335122270946240}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -143,6 +144,7 @@ Transform:
   - {fileID: 9125810702162554343}
   - {fileID: 4417384230051407746}
   - {fileID: 3366128542998721622}
+  - {fileID: 8562819374258716729}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &6833178124414420942
@@ -375,6 +377,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6d5de888-0fe7-4bf6-abaf-1861b07698d7
     m_ActionName: Player/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4606348892272059951}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnRangedAttack
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 59b13fed-f4c9-4cbd-bd8c-001b059b5d4c
+    m_ActionName: Player/RangedAttack[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -500,6 +518,51 @@ MonoBehaviour:
   _health: 100
   _isAlive: 1
   _isInvincible: 0
+--- !u!114 &4201335122270946240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275934333478448340}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d7554cd8696bb5478736374b4150e32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ProjectilePrefab: {fileID: 312439162218122160, guid: 6f06046560168364895292e683f3aae4, type: 3}
+  LaunchPoint: {fileID: 8562819374258716729}
+--- !u!1 &7974416486895435244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8562819374258716729}
+  m_Layer: 7
+  m_Name: BowAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8562819374258716729
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7974416486895435244}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.87, y: -0.16, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4173802744146358531}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7976467113957199878
 GameObject:
   m_ObjectHideFlags: 0

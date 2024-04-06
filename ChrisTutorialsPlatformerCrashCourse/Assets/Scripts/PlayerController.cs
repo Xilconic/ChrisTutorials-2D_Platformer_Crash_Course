@@ -212,6 +212,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void OnRangedAttack(InputAction.CallbackContext context)
+    {
+        // TODO: Is attack is pressed in mid air, the hero character will attack the moment he hits the ground.
+        // This feels akward.
+        // TODO: The Knight enemy keeps some of his forward momentum while attacking. The player does not. Perhaps we should make that consistent?
+        if (context.started)
+        {
+            _animator.SetTrigger(AnimationStrings.RangedAttackTrigger);
+        }
+    }
+
     public void OnHit(int damage, Vector2 knockback)
     {
         _rb.velocity = new Vector2(knockback.x, _rb.velocity.y + knockback.y);
