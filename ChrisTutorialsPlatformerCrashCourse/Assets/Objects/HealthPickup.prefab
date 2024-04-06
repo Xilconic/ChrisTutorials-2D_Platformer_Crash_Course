@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   HealthRestored: 10
+  SpinRotationSpeed: {x: 0, y: 180, z: 0}
 --- !u!61 &818837955095010548
 BoxCollider2D:
   m_ObjectHideFlags: 0

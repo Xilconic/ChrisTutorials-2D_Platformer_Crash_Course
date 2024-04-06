@@ -5,9 +5,13 @@ using UnityEngine;
 public class FadeRemoveBehavior : StateMachineBehaviour
 {
     float _timeElapsed = 0f;
+    float _fadeDelayElapsed = 0f;
 
     [Tooltip("Determines how long, in seconds, it takes before the object fades off the screen and then gets destroyed.")]
     public float FadeTime = 0.5f; // In seconds
+
+    [Tooltip("Determines how long, in seconds, before the fading kicks in.")]
+    public float FadeDelay = 0f;
 
     SpriteRenderer _spriteRenderer;
     GameObject _gameObjectToRemove;
@@ -26,14 +30,21 @@ public class FadeRemoveBehavior : StateMachineBehaviour
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        _timeElapsed += Time.deltaTime;
-
-        var newAlpha = _startColor.a * (1 - (_timeElapsed / FadeTime));
-        _spriteRenderer.color = new Color(_startColor.r, _startColor.g, _startColor.b, newAlpha);
-
-        if (_timeElapsed > FadeTime)
+        if(FadeDelay > _fadeDelayElapsed)
         {
-            Destroy(_gameObjectToRemove);
+            _fadeDelayElapsed += Time.deltaTime;
+        }
+        else
+        {
+            _timeElapsed += Time.deltaTime;
+
+            var newAlpha = _startColor.a * (1 - (_timeElapsed / FadeTime));
+            _spriteRenderer.color = new Color(_startColor.r, _startColor.g, _startColor.b, newAlpha);
+
+            if (_timeElapsed > FadeTime)
+            {
+                Destroy(_gameObjectToRemove);
+            }
         }
     }
 

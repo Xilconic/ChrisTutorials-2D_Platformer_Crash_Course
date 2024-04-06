@@ -20,6 +20,9 @@ public class Damagable : MonoBehaviour
     [Tooltip("Signals a damable hit has happened. First argument is the amount of damage; Second argument the knockback.")]
     public UnityEvent<int, Vector2> DamageableHit;
 
+    [Tooltip("Signals the death of this component.")]
+    public UnityEvent Died;
+
     [SerializeField]
     int _maxHealth = 100;
     public int MaxHealth
@@ -56,6 +59,10 @@ public class Damagable : MonoBehaviour
         {
             _isAlive = value;
             _animator.SetBool(AnimationStrings.IsAlive, value);
+            if(value == false)
+            {
+                Died?.Invoke();
+            }
         }
     }
 
