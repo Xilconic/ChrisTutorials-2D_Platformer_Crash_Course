@@ -99,8 +99,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ea647ed7eb883489bdbacd31bae41b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: {x: 3, y: 0}
-  Damage: 10
+  MoveSpeed: {x: 7, y: 0}
+  Damage: 5
   KnockBack: {x: 0, y: 0}
 --- !u!50 &4155362845496611787
 Rigidbody2D:

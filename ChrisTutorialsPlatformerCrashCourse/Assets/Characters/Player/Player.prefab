@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackDamage: 15
-  KnockBack: {x: 2, y: 0}
+  KnockBack: {x: 1, y: 0}
 --- !u!1 &1275934333478448340
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackDamage: 25
-  KnockBack: {x: 5, y: 0}
+  KnockBack: {x: 8, y: 0}
 --- !u!1 &9095522725880513032
 GameObject:
   m_ObjectHideFlags: 0
@@ -763,5 +763,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e271ac32eca1b6842a8781d9b5c6f127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AttackDamage: 15
-  KnockBack: {x: 2, y: 0}
+  AttackDamage: 10
+  KnockBack: {x: 0, y: 0}

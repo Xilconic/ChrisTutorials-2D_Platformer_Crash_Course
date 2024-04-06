@@ -4143,6 +4143,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2060797398474568913, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
+      propertyPath: KnockBack.x
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 3683353131673052577, guid: 2eeb939c97a0dc84dbfdb5bcf4f6e1c9, type: 3}
       propertyPath: m_GravityScale
       value: 1
