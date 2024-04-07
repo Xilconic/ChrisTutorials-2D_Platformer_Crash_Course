@@ -66,6 +66,7 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 200539110426752559}
   - {fileID: 8747423430586086096}
+  - {fileID: 3168149264200080933}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -266,6 +267,24 @@ MonoBehaviour:
   UpdateOnStateMachine: 0
   ValueOnEnter: 0
   ValueOnExit: 1
+--- !u!114 &312672885619417396
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2869ea0e091970d4a992cb8de09727f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundToPlay: {fileID: 8300000, guid: f9d1dd2e2f8804243a68ded49de503f0, type: 3}
+  Volume: 1
+  PlayOnEnter: 1
+  PlayOnExit: 0
+  PlayOnDelay: 0
+  PlayDelay: 0.25
 --- !u!1107 &826647916946432230
 AnimatorStateMachine:
   serializedVersion: 6
@@ -400,6 +419,7 @@ AnimatorState:
   m_StateMachineBehaviours:
   - {fileID: 4419699341017993774}
   - {fileID: 4532244795412428580}
+  - {fileID: 312672885619417396}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -426,7 +446,8 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: -6850378894498175728}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 7490314810674692046}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
@@ -441,6 +462,24 @@ AnimatorState:
   m_MirrorParameter: 
   m_CycleOffsetParameter: 
   m_TimeParameter: 
+--- !u!114 &3168149264200080933
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2869ea0e091970d4a992cb8de09727f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundToPlay: {fileID: 8300000, guid: 0062268357e1eda40b5ce367b7db30d4, type: 3}
+  Volume: 1
+  PlayOnEnter: 1
+  PlayOnExit: 0
+  PlayOnDelay: 0
+  PlayDelay: 0.25
 --- !u!114 &4419699341017993774
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -509,6 +548,24 @@ MonoBehaviour:
   UpdateOnStateMachine: 1
   ValueOnEnter: 0
   ValueOnExit: 1
+--- !u!114 &7490314810674692046
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2869ea0e091970d4a992cb8de09727f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SoundToPlay: {fileID: 8300000, guid: 3e9cf806930f09b48935fddcbe2306fa, type: 3}
+  Volume: 1
+  PlayOnEnter: 1
+  PlayOnExit: 0
+  PlayOnDelay: 0
+  PlayDelay: 0.25
 --- !u!1101 &7599850570570452287
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -566,3 +623,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeTime: 0.5
+  FadeDelay: 0
