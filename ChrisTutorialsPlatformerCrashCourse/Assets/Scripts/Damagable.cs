@@ -20,6 +20,9 @@ public class Damagable : MonoBehaviour
     [Tooltip("Signals a damable hit has happened. First argument is the amount of damage; Second argument the knockback.")]
     public UnityEvent<int, Vector2> DamageableHit;
 
+    [Tooltip("Signals that the health has changed.")]
+    public UnityEvent HealthChanged;
+
     [Tooltip("Signals the death of this component.")]
     public UnityEvent Died;
 
@@ -42,8 +45,9 @@ public class Damagable : MonoBehaviour
         set
         {
             _health = value;
+            HealthChanged?.Invoke(); // TODO: Assume that MaxHealth never changes during gameplay
 
-            if(_health <= 0)
+            if (_health <= 0)
             { 
                 IsAlive = false;
             }
