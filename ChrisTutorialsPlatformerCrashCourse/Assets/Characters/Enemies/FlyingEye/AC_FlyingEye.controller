@@ -106,31 +106,31 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: lockVelocity
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isAlive
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: hasTarget
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: canMove
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 1
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -144,6 +144,23 @@ AnimatorController:
     m_IKPass: 0
     m_SyncedLayerAffectsTiming: 0
     m_Controller: {fileID: 9100000}
+--- !u!114 &650875668674234
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e65ea36004bbe4cb864b9f6810c435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoolName: lockVelocity
+  UpdateOnState: 1
+  UpdateOnStateMachine: 0
+  ValueOnEnter: 1
+  ValueOnExit: 0
 --- !u!114 &1852463513610501351
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -157,6 +174,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FadeTime: 0.5
+  FadeDelay: 0
+--- !u!114 &2350839269777237740
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e65ea36004bbe4cb864b9f6810c435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BoolName: canMove
+  UpdateOnState: 1
+  UpdateOnStateMachine: 0
+  ValueOnEnter: 0
+  ValueOnExit: 1
 --- !u!1101 &2519087522386865416
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -257,7 +292,9 @@ AnimatorState:
   m_CycleOffset: 0
   m_Transitions:
   - {fileID: 3036694560707998059}
-  m_StateMachineBehaviours: []
+  m_StateMachineBehaviours:
+  - {fileID: 2350839269777237740}
+  - {fileID: 650875668674234}
   m_Position: {x: 50, y: 50, z: 0}
   m_IKOnFeet: 0
   m_WriteDefaultValues: 1
